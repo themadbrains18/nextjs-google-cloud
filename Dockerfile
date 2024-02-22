@@ -1,5 +1,5 @@
 # base image
-FROM node:18.16.1
+FROM node:20.7.0
 
 RUN mkdir /app
 COPY package.json /app/
