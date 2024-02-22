@@ -1,18 +1,14 @@
 # base image
 FROM node:18.16.1
 
-# Create and change to the app directory.
-WORKDIR /usr/app
+RUN mkdir /app
+COPY package.json /app/
+WORKDIR /app
+COPY . ./
 
-# Copy application dependency manifests to the container image.
-# A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
-# Copying this first prevents re-running npm install on every code change.
-COPY . .
+# ENV NEXT_PUBLIC_APP_URL=https://www.mydomain.com
 
-# Install production dependencies.
-# If you add a package-lock.json, speed your build by switching to 'npm ci'.
-RUN npm ci --only=production
-
+RUN npm install
 RUN npm run build
-
-CMD ["npm", "start"]
+EXPOSE 4000
+CMD ["npm", "run","start"]
