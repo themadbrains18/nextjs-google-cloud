@@ -12,3 +12,6 @@ RUN npm install
 RUN npm run build
 EXPOSE 4000
 CMD ["npm", "run","start"]
+
+
+#gcr.io/crypto-planet-415008/github.com/themadbrains18/nextjs-google-cloud
