@@ -93,16 +93,16 @@ const ResponsiveSidebar = (props: defaultStates) => {
         var formData = new FormData();
         formData.append("image", files);
 
-        let response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASEURL}/profile/dp`,
-          {
-            method: "POST",
-            headers: {
-              "Authorization": session?.user?.access_token
-            },
-            body: formData,
-          }
-        ).then((response) => response.json());
+        // let response = await fetch(
+        //   `${process.env.NEXT_PUBLIC_BASEURL}/profile/dp`,
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       "Authorization": session?.user?.access_token
+        //     },
+        //     body: formData,
+        //   }
+        // ).then((response) => response.json());
 
       }.bind(this);
     }

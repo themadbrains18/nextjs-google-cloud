@@ -5,7 +5,7 @@ import Link from "next/link";
 import TradeIcon from "../svg-snippets/trade-icon";
 import { Wallet } from "../svg-snippets/wallet-icon";
 
-import Context from "../contexts/context";
+// import Context from "../contexts/context";
 import ResponsiveSidebar from "./responsive-sidebar";
 
 import { useRouter } from "next/router";
@@ -19,7 +19,7 @@ interface propsData {
 }
 
 const Header = (props: propsData) => {
-  let { mode } = useContext(Context);
+  // let { mode } = useContext(Context);
   const router = useRouter();
   const [userDetail, setUserDetail] = useState<any>(null);
   const [notificationData, setNotificationData] = useState([]);
@@ -57,65 +57,65 @@ const Header = (props: propsData) => {
 
   useEffect(() => {
     if (status === "authenticated") {
-      getUserBasicDetail();
-      getUserNotification();
+      // getUserBasicDetail();
+      // getUserNotification();
     }
     getTokenList();
   }, []);
 
   useEffect(() => {
-    const websocket = new WebSocket("ws://localhost:3001/");
+    // const websocket = new WebSocket("ws://localhost:3001/");
 
-    websocket.onopen = () => {
-      console.log("connected");
-    };
+    // websocket.onopen = () => {
+    //   console.log("connected");
+    // };
 
-    websocket.onmessage = (event) => {
-      const data = JSON.parse(event.data).data;
-      let eventDataType = JSON.parse(event.data).type;
-      if (eventDataType === "user_notify") {
-        getUserNotification();
-      }
-      if (eventDataType === "profile") {
-        if (data?.user_id === session?.user?.user_id) {
-          setUserDetail(data);
-        }
-      }
-    };
+    // websocket.onmessage = (event) => {
+    //   const data = JSON.parse(event.data).data;
+    //   let eventDataType = JSON.parse(event.data).type;
+    //   if (eventDataType === "user_notify") {
+    //     getUserNotification();
+    //   }
+    //   if (eventDataType === "profile") {
+    //     if (data?.user_id === session?.user?.user_id) {
+    //       setUserDetail(data);
+    //     }
+    //   }
+    // };
 
   }, []);
 
-  const getUserNotification = async () => {
-    let profileDashboard = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/notification?userid=${session?.user?.user_id}`, {
-      method: "GET",
-      headers: {
-        "Authorization": session?.user?.access_token || ""
-      },
-    }).then(response => response.json());
+  // const getUserNotification = async () => {
+  //   let profileDashboard = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/notification?userid=${session?.user?.user_id}`, {
+  //     method: "GET",
+  //     headers: {
+  //       "Authorization": session?.user?.access_token || ""
+  //     },
+  //   }).then(response => response.json());
 
-    if (profileDashboard) {
-      let data = profileDashboard?.data.filter((item: any) => {
-        return item?.status === 0 || item?.status === false
-      })
-      setNotificationData(data)
-    }
-  }
+  //   if (profileDashboard) {
+  //     let data = profileDashboard?.data.filter((item: any) => {
+  //       return item?.status === 0 || item?.status === false
+  //     })
+  //     setNotificationData(data)
+  //   }
+  // }
 
-  const getUserBasicDetail = async () => {
-    let profileDashboard = await fetch(
-      `${process.env.NEXT_PUBLIC_BASEURL}/profile/dashboard?userid=${session?.user?.user_id}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: session?.user?.access_token || "",
-        },
-      }
-    ).then((response) => response.json());
+  // const getUserBasicDetail = async () => {
+  //   let profileDashboard = await fetch(
+  //     `${process.env.NEXT_PUBLIC_BASEURL}/profile/dashboard?userid=${session?.user?.user_id}`,
+  //     {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: session?.user?.access_token || "",
+  //       },
+  //     }
+  //   ).then((response) => response.json());
 
-    if (profileDashboard) {
-      setUserDetail(profileDashboard?.data);
-    }
-  };
+  //   if (profileDashboard) {
+  //     setUserDetail(profileDashboard?.data);
+  //   }
+  // };
 
   const getTokenList = async () => {
     let tokenList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/token`, {
@@ -320,11 +320,11 @@ const Header = (props: propsData) => {
                       </span>
                     </div>
 
-                    {notificationData.length > 0 &&
+                    {/* {notificationData.length > 0 &&
                       <div className="absolute top-[96px] opacity-0 invisible duration-300  right-[0px] hover:block dropdown_wrapper">
                         <Notification notificationData={notificationData} getUserNotification={getUserNotification} />
                       </div>
-                    }
+                    } */}
 
                   </div>
                 </div>
@@ -357,7 +357,7 @@ const Header = (props: propsData) => {
                       fillRule="evenodd"
                       clipRule="evenodd"
                       d="M9.73034 7.50031L15.0966 2.13406C15.5853 1.64531 15.5853 0.855312 15.0966 0.366562C14.6078 -0.122188 13.8178 -0.122188 13.3291 0.366562L7.96284 5.73281L2.59659 0.366562C2.10784 -0.122188 1.31784 -0.122188 0.829087 0.366562C0.340337 0.855312 0.340337 1.64531 0.829087 2.13406L6.19534 7.50031L0.829087 12.8666C0.340337 13.3553 0.340337 14.1453 0.829087 14.6341C1.07284 14.8778 1.39284 15.0003 1.71284 15.0003C2.03284 15.0003 2.35284 14.8778 2.59659 14.6341L7.96284 9.26781L13.3291 14.6341C13.5728 14.8778 13.8928 15.0003 14.2128 15.0003C14.5328 15.0003 14.8528 14.8778 15.0966 14.6341C15.5853 14.1453 15.5853 13.3553 15.0966 12.8666L9.73034 7.50031Z"
-                      fill={mode == "dark" ? "white" : "#2B3144"}
+                      fill="#2B3144"
                     />
                   </svg>
                 </div>
@@ -378,9 +378,8 @@ const Header = (props: propsData) => {
                       fillRule="evenodd"
                       clipRule="evenodd"
                       d="M19 2C19.5523 2 20 1.55228 20 1C20 0.447715 19.5523 0 19 0H1C0.447715 0 0 0.447715 0 1C0 1.55228 0.447715 2 1 2H19ZM19 4C19.5523 4 20 4.44772 20 5C20 5.55228 19.5523 6 19 6H7C6.44772 6 6 5.55228 6 5C6 4.44772 6.44772 4 7 4H19ZM19 10C19.5523 10 20 9.55229 20 9C20 8.44771 19.5523 8 19 8H1C0.447715 8 0 8.44771 0 9C0 9.55229 0.447715 10 1 10H19ZM19 14C19.5523 14 20 13.5523 20 13C20 12.4477 19.5523 12 19 12H7C6.44772 12 6 12.4477 6 13C6 13.5523 6.44772 14 7 14H19Z"
-                      className={`${mode == "dark" ? "fill-white" : "fill-[#2B3144]"
-                        }`}
-                      fill={mode == "dark" ? "white" : "#2B3144"}
+                      className="fill-[#2B3144]"
+                      fill="#2B3144"
                     />
                   </svg>
                 </div>
