@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import IconsComponent from './icons';
 import Link from 'next/link';
-import MainResponsivePage from '../profile/responsive/main';
+// import MainResponsivePage from '../profile/responsive/main';
 import { useRouter } from 'next/router';
 import { signOut } from 'next-auth/react';
 import { useSession } from 'next-auth/react';
@@ -242,7 +242,7 @@ const SideBar = (props: profileSec) => {
             </div>
             {/* responsive tabs for profile pages */}
             <div className='lg:hidden block'>
-                <MainResponsivePage show={show} setShow={setShow} profileInfo1={props.profileInfo} kycInfo={props.kycInfo} referalList={props.referalList} activity={props?.activity} eventList={props.eventList} rewardsList={props.rewardsList} />
+                {/* <MainResponsivePage show={show} setShow={setShow} profileInfo1={props.profileInfo} kycInfo={props.kycInfo} referalList={props.referalList} activity={props?.activity} eventList={props.eventList} rewardsList={props.rewardsList} /> */}
             </div>
         </>
     )

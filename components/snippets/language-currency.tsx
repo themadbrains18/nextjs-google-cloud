@@ -73,10 +73,10 @@ const LanguageCurrency = () => {
 
     let setActiveLang = (e:any)=>{
         let listWrapper = document.querySelectorAll(".listWrapper li")
-        for(let i of listWrapper){
-            i.classList.remove("bg-primary")
-            i.classList.remove("!text-white")
-        }
+        // for(let i of listWrapper){
+        //     i.classList.remove("bg-primary")
+        //     i.classList.remove("!text-white")
+        // }
         let active = e.currentTarget;
         active.classList.add("bg-primary");
         active.classList.add("!text-white");

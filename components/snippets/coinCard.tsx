@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import ChartImage from './chart-image';
+// import ChartImage from './chart-image';
 import IconsComponent from './icons';
 import Link from 'next/link';
 
