@@ -17,7 +17,7 @@ try {
     id: id,
   };
 
-  let profileDashboard = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/notification`, {
+  let profileDashboard = await fetch(`https://nextjs-google-cloud-run-7gch2fryja-uc.a.run.app/api/notification`, {
     method: "PUT",
     headers: {
       "Authorization": session?.user?.access_token

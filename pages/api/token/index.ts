@@ -24,7 +24,7 @@ export const config = {
 router
     .get(async (req, res) => {
         try {
-            let data = await getMethod(`${process.env.NEXT_PUBLIC_APIURL}/token/future`);     
+            let data = await getMethod(`https://lucent-kelpie-aa145b.netlify.app/.netlify/functions/api/token/future`);     
             return res.status(200).send({ data });
 
         } catch (error: any) {

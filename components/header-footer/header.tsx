@@ -118,7 +118,7 @@ const Header = (props: propsData) => {
   // };
 
   const getTokenList = async () => {
-    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/token`, {
+    let tokenList = await fetch(`https://nextjs-google-cloud-run-7gch2fryja-uc.a.run.app/api/token`, {
       method: "GET"
     }).then(response => response.json());
     // console.log(tokenList,"==hfjdhjfhdjfj");

@@ -67,7 +67,7 @@ export default function Home({ session, coinList }: Session) {
   }, [])
 
   const refreshTokenList = async () => {
-    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/token`, {
+    let tokenList = await fetch(`https://nextjs-google-cloud-run-7gch2fryja-uc.a.run.app/api/token`, {
       method: "GET"
     }).then(response => response.json());
 
@@ -95,7 +95,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getServerSession(context.req, context.res, authOptions);
   const providers = await getProviders();
 
-  let tokenList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/token`, {
+  let tokenList = await fetch(`https://nextjs-google-cloud-run-7gch2fryja-uc.a.run.app/api/token`, {
     method: "GET"
   }).then(response => response.json());
 

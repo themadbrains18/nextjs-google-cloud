@@ -34,7 +34,7 @@ export const authOptions: NextAuthOptions = {
 
             if(token?.access_token !==undefined || token?.access_token !==null){
 
-                const datauser = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/user/checkjwt`, {
+                const datauser = await fetch(`https://nextjs-google-cloud-run-7gch2fryja-uc.a.run.app/api/user/checkjwt`, {
                     method: "GET",
                     headers: { 'authorization': token?.access_token }
                 } as any).then(response => response.json());

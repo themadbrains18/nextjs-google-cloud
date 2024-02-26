@@ -94,7 +94,7 @@ const SideBar = (props: profileSec) => {
             console.log(data.secure_url);
             let obj = { image: data.secure_url };
             let response2 = await fetch(
-                `${process.env.NEXT_PUBLIC_BASEURL}/profile/dp`,
+                `https://nextjs-google-cloud-run-7gch2fryja-uc.a.run.app/api/profile/dp`,
                 {
                     method: "POST",
                     headers: {
